@@ -1,5 +1,5 @@
 #!/bin/bash
-
+cd "$(dirname "$0")" || exit
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 CONFIG_FILE="config.conf"
 
@@ -24,12 +24,6 @@ WantedBy=multi-user.target" | sudo tee "$SERVICE_FILE" > /dev/null
 if [[ ! -f $CONFIG_FILE ]]; then
   echo "Configuration file not found"
   exit 1
-fi
-
-# Request root access
-if [ $EUID != 0 ]; then
-    sudo "$0" "$@"
-    exit $?
 fi
 
 # shellcheck source=./config.conf
@@ -81,11 +75,12 @@ if [[ "$response" == "y" ]]; then
     if [[ "$response" == "y" ]]; then
       sudo systemctl start "$SERVICE_NAME"
       echo "Service started"
+    else
+      echo "You can now start the server with ./start_server.sh or sudo systemctl start $SERVICE_NAME"
     fi
 
     echo "Done"
 else
     echo "Installation aborted"
+    echo "You can start the server with ./start_server.sh"
 fi
-
-echo "You can now start the server with ./start_server.sh"
