@@ -9,9 +9,10 @@ Set up your FastAPI server with a virtual environment and a systemd service with
 
 ### Using the Installer (Recommended)
 
-2. Run `install.sh` as root:
+2. Run `install.sh`:
     - Enter the network port for the FastAPI server.
-    - Choose whether to create a systemd service file to automatically start the server on system reboot:
+    - Choose whether to create a systemd service file to automatically start the server on system reboot (requires root
+      privileges).:
         - Select if you would like to start the service immediately.
         - You can always start the service later.
 
@@ -23,4 +24,4 @@ Set up your FastAPI server with a virtual environment and a systemd service with
 3. Install the required dependencies: `pip3 install -r requirements.txt`.
 4. Choose **one** of the following methods to start the server:
     - Run `start_server.sh`, ensuring `$PORT` is defined beforehand.
-    - Execute `python3 -m uvicorn main:app`.
+    - Execute `fastapi run`.
