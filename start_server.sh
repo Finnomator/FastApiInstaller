@@ -1,5 +1,5 @@
 #!/bin/bash
-
+cd "$(dirname "$0")" || exit
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 CONFIG_FILE="config.conf"
 
@@ -19,4 +19,4 @@ echo "Installing requirements"
 pip3 install -r requirements.txt
 
 echo "Starting service on port $PORT"
-python3 -m uvicorn main:app --port "$PORT"
+fastapi run --port "$PORT"
