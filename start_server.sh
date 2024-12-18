@@ -8,9 +8,6 @@ if [[ ! -f $CONFIG_FILE ]]; then
   exit 1
 fi
 
-echo "Pulling latest changes"
-source "$SCRIPT_DIR/update.sh"
-
 echo "Activating environment"
 # shellcheck source=./config.conf
 source "$SCRIPT_DIR/$CONFIG_FILE"
